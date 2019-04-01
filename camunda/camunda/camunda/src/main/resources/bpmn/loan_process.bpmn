@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_15cgz4d" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.0.1">
+  <bpmn:process id="Process_17lecap" name="Loan Process" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1" camunda:formKey="loan_id">
+      <bpmn:extensionElements>
+        <camunda:formData businessKey="loan_id">
+          <camunda:formField id="loan_id" label="Loan ID" type="string" />
+          <camunda:formField id="customer_name" label="Customer Name" type="string" />
+          <camunda:formField id="loan_amount" label="Loan Amount" type="long" />
+          <camunda:formField id="annual_salary" label="Annual Salary" type="long" />
+          <camunda:formField id="credit_score" label="Credit Score" type="long" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:outgoing>SequenceFlow_143p97p</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:userTask id="Task_08m2jwi" name="Review Loan Application" camunda:formKey="loan_id">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="loan_id" label="Loan ID" type="string" />
+          <camunda:formField id="customer_name" label="Customer Name" type="string" />
+          <camunda:formField id="loan_amount" label="Loan Amount" type="long" defaultValue="0" />
+          <camunda:formField id="annual_salary" label="Annual Salary" type="long" defaultValue="0" />
+          <camunda:formField id="credit_score" label="Credit Score" type="long" defaultValue="0" />
+          <camunda:formField id="loan_approval_decision" label="Approve Loan?" type="boolean" />
+        </camunda:formData>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="loan_id" />
+          <camunda:inputParameter name="customer_name" />
+          <camunda:inputParameter name="loan_amount" />
+          <camunda:inputParameter name="annual_salary" />
+          <camunda:inputParameter name="credit_score" />
+          <camunda:outputParameter name="loan_approval_decision" />
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_143p97p</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1h797ek</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="SequenceFlow_143p97p" sourceRef="StartEvent_1" targetRef="Task_08m2jwi" />
+    <bpmn:endEvent id="EndEvent_0ide18s">
+      <bpmn:incoming>SequenceFlow_1h797ek</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1h797ek" sourceRef="Task_08m2jwi" targetRef="EndEvent_0ide18s" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_17lecap">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="103" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_056o6ob_di" bpmnElement="Task_08m2jwi">
+        <dc:Bounds x="266" y="81" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_143p97p_di" bpmnElement="SequenceFlow_143p97p">
+        <di:waypoint x="215" y="121" />
+        <di:waypoint x="266" y="121" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_0ide18s_di" bpmnElement="EndEvent_0ide18s">
+        <dc:Bounds x="417" y="103" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1h797ek_di" bpmnElement="SequenceFlow_1h797ek">
+        <di:waypoint x="366" y="121" />
+        <di:waypoint x="417" y="121" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
